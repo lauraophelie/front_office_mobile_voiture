@@ -10,7 +10,7 @@
     &__title {
         font-family: $primary-font;
         line-height: 8px;
-        font-size: 35px;
+        font-size: $title-font-size;
         padding-left: 50px;
         padding-top: 70%;
     }
