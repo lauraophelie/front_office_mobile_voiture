@@ -1,0 +1,40 @@
+@import "../assets/sass/variable.scss";
+
+.home {
+    height: 100%;
+    background-image: url("../imgs/home-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &__title {
+        font-family: $primary-font;
+        line-height: 8px;
+        font-size: 35px;
+        padding-left: 50px;
+        padding-top: 70%;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__button {
+            width: 245px;
+            margin-left: 50px;
+            height: 45px;
+            font-size: 15px;
+            border-radius: 3%;
+
+            &--one {
+                background-color: $primary-color;
+            }
+
+            &--two {
+                background-color: $secondary-color;
+                margin-top: 15px;
+            }
+        }
+    }
+}

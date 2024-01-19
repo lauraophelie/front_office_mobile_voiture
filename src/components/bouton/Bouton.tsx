@@ -1,3 +1,5 @@
+import "./bouton.scss";
+
 interface BoutonProps {
     text: string,
     className?: string,
