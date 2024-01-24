@@ -1,8 +1,8 @@
-import { IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
+import { IonFab, IonFabButton, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router"
 import Menu from "../../pages/menu/Menu";
-import { home, grid, notificationsOutline, logOutOutline } from 'ionicons/icons';
+import { home, grid, notificationsOutline, logOutOutline, addCircle, add } from 'ionicons/icons';
 import ListeAnnonce from "../../pages/annonce/liste/ListeAnnonce";
 import Notifications from "../../pages/notifications/Notifications";
 
@@ -23,6 +23,10 @@ const Footer: React.FC = () => {
 
                     <IonTabButton tab="liste_annonce" href="/liste_annonce">
                         <IonIcon icon={grid} />
+                    </IonTabButton>
+
+                    <IonTabButton>
+                        <IonIcon icon={addCircle} />
                     </IonTabButton>
 
                     <IonTabButton tab="notifications" href="/notifications">
