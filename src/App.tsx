@@ -20,10 +20,10 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import './theme/variables.css';
+//import './theme/variables.css';
 import Login from './pages/login/Login';
 import Inscription from './pages/login/Inscription';
-import Menu from './pages/menu/Menu';
+import Footer from './components/footer/Footer';
 
 setupIonicReact();
 
@@ -43,13 +43,11 @@ const App: React.FC = () => (
           <Inscription />
         </Route>
 
-        <Route exact path="/menu">
-          <Menu />
-        </Route>
-
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
+
+        <Footer />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
