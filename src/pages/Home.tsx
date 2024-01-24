@@ -2,8 +2,11 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import ExploreContainer from '../components/ExploreContainer';
 import "./Home.scss";
 import Bouton from '../components/bouton/Bouton';
+import { useHistory } from 'react-router';
 
 const Home: React.FC = () => {
+  const history = useHistory();
+
   return (
     <IonPage>
       <div className="home">
@@ -19,10 +22,12 @@ const Home: React.FC = () => {
           <Bouton 
             text={"Se connecter"}
             className="home__nav__button home__nav__button--one"
+            onClick={() => history.push("/login")}
           />
           <Bouton 
             text={"S'inscrire"} 
             className="home__nav__button home__nav__button--two"
+            onClick={() => history.push("/inscription")}
           />
         </div>
       </div>

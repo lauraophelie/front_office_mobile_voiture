@@ -3,8 +3,11 @@ import { IonPage } from "@ionic/react";
 import "./Login.scss";
 import Input from "../../components/input/Input";
 import Bouton from "../../components/bouton/Bouton";
+import { useHistory } from "react-router";
 
 const Login: React.FC = () => {
+    const history = useHistory();
+
     return (
         <IonPage>
             <div className="form">
@@ -36,7 +39,10 @@ const Login: React.FC = () => {
                     />
                 </div>
 
-                <p className="form__p form__p--footer">
+                <p 
+                    className="form__p form__p--footer"
+                    onClick={() => history.push("/inscription")}
+                >
                     Pas encore de compte ? Inscrivez-vous
                 </p>
             </div>
