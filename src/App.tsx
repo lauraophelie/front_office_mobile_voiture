@@ -23,6 +23,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Login from './pages/login/Login';
 import Inscription from './pages/login/Inscription';
+import Menu from './pages/menu/Menu';
 
 setupIonicReact();
 
@@ -33,12 +34,19 @@ const App: React.FC = () => (
         <Route exact path="/home">
           <Home />
         </Route>
+
         <Route exact path="/login">
           <Login />
         </Route>
+
         <Route exact path="/inscription">
           <Inscription />
         </Route>
+
+        <Route exact path="/menu">
+          <Menu />
+        </Route>
+
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
