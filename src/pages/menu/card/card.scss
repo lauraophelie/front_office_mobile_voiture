@@ -1,0 +1,7 @@
+@import "../../../assets/sass/mixin.scss";
+
+ion-card {
+    --background: white;
+    @include box-shadow(10px, 10px, 5px, rgb(248, 248, 248));
+    --height: 400px;
+}
