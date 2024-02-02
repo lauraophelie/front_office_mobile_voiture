@@ -5,6 +5,7 @@ import Menu from "../../pages/menu/Menu";
 import { home, grid, notificationsOutline, logOutOutline, addCircle, add } from 'ionicons/icons';
 import ListeAnnonce from "../../pages/annonce/liste/ListeAnnonce";
 import Notifications from "../../pages/notifications/Notifications";
+import AjoutAnnonce from "../../pages/annonce/ajout/AjoutAnnonce";
 
 const Footer: React.FC = () => {
     return (
@@ -12,8 +13,9 @@ const Footer: React.FC = () => {
             <IonTabs>
                 <IonRouterOutlet>
                     <Route path="/menu" render={() => <Menu />} exact={true} />
-                    <Route path="/liste_annonce" render={() => <ListeAnnonce />} exact={true}/>
+                    <Route path="/liste_annonce" render={() => <ListeAnnonce />} exact={true} />
                     <Route path="/notifications" render={() => <Notifications />} exact={true} />
+                    <Route path="/ajout_annonce" render={() => <AjoutAnnonce />} exact={true} />
                 </IonRouterOutlet>
 
                 <IonTabBar slot="bottom">
@@ -25,7 +27,7 @@ const Footer: React.FC = () => {
                         <IonIcon icon={grid} />
                     </IonTabButton>
 
-                    <IonTabButton>
+                    <IonTabButton tab="ajout_annonce" href="/ajout_annonce">
                         <IonIcon icon={addCircle} />
                     </IonTabButton>
 
