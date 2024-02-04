@@ -1,7 +1,18 @@
 @import "../../../assets/sass/mixin.scss";
+@import "../../../assets/sass/variable.scss";
 
 ion-card {
-    --background: white;
-    @include box-shadow(10px, 10px, 5px, rgb(248, 248, 248));
-    --height: 400px;
+    --background: var(white, #FAFAFA);
+    @include box-shadow(5px, 5px, 5px, rgb(237, 237, 237));
+    height: 4cm;
+    text-align: center;
+    font-family: var($secondary-font, $primary-font);
+    color: $title-color;
+
+    ion-icon {
+        margin-left: 35%;
+        text-align: center;
+        margin-top: 25px;
+        color: $title-color;
+    }
 }

@@ -1,8 +1,26 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent } from "@ionic/react";
+import { IonContent } from "@ionic/react";
 import "./Menu.scss";
 import "./card/card.scss";
+import { grid, notifications } from "ionicons/icons";
+import { useHistory } from "react-router";
+import MenuCard from "./card/MenuCard";
 
 const Menu: React.FC = () => {
+    const history = useHistory();
+
+    const cards = [
+        {
+            title: "Annonces",
+            icon: grid,
+            onclick: () => {history.push("/liste_annonce")}
+        },
+        {
+            title: "Notifications",
+            icon: notifications,
+            onclick: () => {history.push("/notifications")}
+        }
+    ]
+
     return (
         <IonContent>
             <div className="menu">
@@ -18,23 +36,14 @@ const Menu: React.FC = () => {
                 </div>
 
                 <div className="menu__content">
-                    <IonCard>
-                        <IonCardHeader>
-                            <IonCardTitle>Card Title</IonCardTitle>
-                            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                        </IonCardHeader>
-
-                        <IonCardContent>Card Content</IonCardContent>
-                    </IonCard>
-
-                    <IonCard>
-                        <IonCardHeader>
-                            <IonCardTitle>Card Title</IonCardTitle>
-                            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                        </IonCardHeader>
-
-                        <IonCardContent>Card Content</IonCardContent>
-                    </IonCard>
+                    {cards.map((item, index) => (
+                        <MenuCard
+                            key={index}
+                            title={item.title}
+                            icon={item.icon}
+                            onClick={item.onclick}
+                        />
+                    ))}
                 </div>
             </div>
         </IonContent>

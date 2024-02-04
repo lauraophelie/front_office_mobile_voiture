@@ -1,0 +1,12 @@
+@import "../../assets/sass/mixin.scss";
+@import "../../assets/sass/variable.scss";
+
+.liste-annonce {
+    &--title {
+        text-align: center;
+        font-size: 20px;
+        text-transform: uppercase;
+        padding-top: 25px;
+        font-family: $primary-font;
+    }
+}

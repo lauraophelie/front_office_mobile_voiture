@@ -24,6 +24,7 @@ import '@ionic/react/css/display.css';
 import Login from './pages/login/Login';
 import Inscription from './pages/login/Inscription';
 import Footer from './components/footer/Footer';
+import "./assets/style.scss";
 
 setupIonicReact();
 
