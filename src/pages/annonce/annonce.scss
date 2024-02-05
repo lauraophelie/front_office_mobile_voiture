@@ -80,3 +80,14 @@
         }
     }
 }
+
+.details-annonce {
+    &__image {
+        border: 1px solid lightgrey;
+        height: 275px;
+    }
+
+    &__content {
+        height: fit-content;
+    }
+}
