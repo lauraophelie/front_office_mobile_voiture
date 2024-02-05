@@ -11,7 +11,7 @@ interface AnnonceCardProps {
 
 const AnnonceCard: React.FC<AnnonceCardProps> = (props) => {
     return (
-        <div className="liste-annonce__content__card" onClick={props.onClick}>
+        <div className="liste-annonce__content__card">
             <Image
                 src={props.image}
                 className="liste-annonce__content__card--image"
@@ -27,6 +27,7 @@ const AnnonceCard: React.FC<AnnonceCardProps> = (props) => {
                     <Bouton
                         text="Détails"
                         className="liste-annonce__content__card--details--button"
+                        onClick={props.onClick}
                     />
                 </p>
             </p>

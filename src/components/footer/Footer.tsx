@@ -6,6 +6,7 @@ import { home, grid, notificationsOutline, logOutOutline, addCircle, add } from 
 import ListeAnnonce from "../../pages/annonce/liste/ListeAnnonce";
 import Notifications from "../../pages/notifications/Notifications";
 import AjoutAnnonce from "../../pages/annonce/ajout/AjoutAnnonce";
+import DetailsAnnonce from "../../pages/annonce/liste/DetailsAnnonce";
 
 const Footer: React.FC = () => {
     return (
@@ -16,6 +17,7 @@ const Footer: React.FC = () => {
                     <Route path="/liste_annonce" render={() => <ListeAnnonce />} exact={true} />
                     <Route path="/notifications" render={() => <Notifications />} exact={true} />
                     <Route path="/ajout_annonce" render={() => <AjoutAnnonce />} exact={true} />
+                    <Route path="/details_annonce" render={() => <DetailsAnnonce />} exact={true} />
                 </IonRouterOutlet>
 
                 <IonTabBar slot="bottom">
