@@ -18,25 +18,25 @@ const ListeAnnonce: React.FC = () => {
             id: 2,
             title: "Titre de l'annonce",
             horaire: "Date et Heure",
-            image: "src/imgs/essai.jpg"
+            image: "src/imgs/essai-1.jpg"
         },
         {
             id: 3,
             title: "Titre de l'annonce",
             horaire: "Date et Heure",
-            image: "src/imgs/essai.jpg"
+            image: "src/imgs/essai-2.jpg"
         },
         {
             id: 4,
             title: "Titre de l'annonce",
             horaire: "Date et Heure",
-            image: "src/imgs/essai.jpg"
+            image: "src/imgs/essai-3.jpg"
         },
         {
             id: 5,
             title: "Titre de l'annonce",
             horaire: "Date et Heure",
-            image: "src/imgs/essai.jpg"
+            image: "src/imgs/essai-4.jpg"
         }
     ]
 

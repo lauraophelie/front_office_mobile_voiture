@@ -83,11 +83,50 @@
 
 .details-annonce {
     &__image {
-        border: 1px solid lightgrey;
-        height: 275px;
+        height: 250px;
+
+        &__element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     &__content {
-        height: fit-content;
+        padding-left: 15px;
+
+        &__header {
+            line-height: 2px;
+
+            &--main {
+                font-size: 22px;
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--details {
+                font-size: 15px;
+                font-weight: lighter;
+                font-family: $secondary-font;
+                color: $grey;
+            }
+        }
+
+        &__desc {
+            margin-top: 30px;
+
+            &--main {
+                font-family: $primary-font;
+                font-size: 17px;
+                color: $title-color;
+            }
+
+            &--content {
+                font-family: $secondary-font;
+                color: $grey;
+                font-weight: lighter;
+                font-size: 16px;
+            }
+        }
     }
 }
