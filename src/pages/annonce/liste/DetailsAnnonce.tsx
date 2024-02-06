@@ -65,6 +65,23 @@ const DetailsAnnonce: React.FC = () => {
                             consequat ipsum voluptua dolores te et duo dolor elitr.
                         </p>
                     </h2>
+                    <div className="details-annonce__content__element">
+                        <p className="details-annonce__content__element--main">
+                            Lieu 
+                        </p>
+                        <p className="details-annonce__content__element--content">
+                            Lieu
+                        </p>
+                    </div>
+
+                    <div className="details-annonce__content__element">
+                        <p className="details-annonce__content__element--main">
+                            Prix
+                        </p>
+                        <p className="details-annonce__content__element--content">
+                            Prix de l'annonce
+                        </p>
+                    </div>
                 </div>
             </div>
         </IonContent>

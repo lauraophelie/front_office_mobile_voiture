@@ -94,6 +94,8 @@
 
     &__content {
         padding-left: 15px;
+        height: fit-content;
+        overflow-y: scroll;
 
         &__header {
             line-height: 2px;
@@ -126,6 +128,21 @@
                 color: $grey;
                 font-weight: lighter;
                 font-size: 16px;
+            }
+        }
+
+        &__element {
+            display: flex;
+            justify-content: space-between;
+
+            &--main {
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--content {
+                font-family: $secondary-font;
+                font-weight: lighter;
             }
         }
     }
