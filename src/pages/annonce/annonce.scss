@@ -133,7 +133,8 @@
 
         &__element {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
+            align-items: flex-end;
 
             &--main {
                 font-family: $primary-font;
@@ -143,6 +144,66 @@
             &--content {
                 font-family: $secondary-font;
                 font-weight: lighter;
+                padding-left: 15px;
+            }
+        }
+
+        &__voiture {
+            margin-top: 15px;
+            height: fit-content;
+
+            &--title {
+                font-size: 20px;
+                font-family: $primary-font;
+                color: $title-color;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.ajout-annonce {
+    margin-top: 50px;
+
+    &__title {
+        text-align: center;
+        line-height: 5px;
+
+        &--main {
+            font-family: $primary-font;
+            font-size: 25px;
+            color: $title-color;
+        }
+
+        &--extra {
+            font-size: 17px;
+            font-family: $secondary-font;
+            font-weight: lighter;
+            color: rgb(100, 100, 100);
+        }
+    }
+
+    &__content {
+        margin-top: 25px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__input {
+            display: flex;
+            margin-top: 20px;
+            width: 80%;
+            flex-direction: column;
+
+            &--label {
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--element {
+                border: 1px solid rgb(230, 230, 230);
+                margin-top: 10px;
             }
         }
     }
