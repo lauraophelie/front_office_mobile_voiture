@@ -7,6 +7,9 @@ import ListeAnnonce from "../../pages/annonce/liste/ListeAnnonce";
 import Notifications from "../../pages/notifications/Notifications";
 import AjoutAnnonce from "../../pages/annonce/ajout/AjoutAnnonce";
 import DetailsAnnonce from "../../pages/annonce/liste/DetailsAnnonce";
+import AjoutVoiture from "../../pages/annonce/ajout/AjoutVoiture";
+import DetailsVoiture from "../../pages/annonce/ajout/DetailsVoiture";
+import ImagesAnnonce from "../../pages/annonce/ajout/ImagesAnnonce";
 
 const Footer: React.FC = () => {
     return (
@@ -18,6 +21,9 @@ const Footer: React.FC = () => {
                     <Route path="/notifications" render={() => <Notifications />} exact={true} />
                     <Route path="/ajout_annonce" render={() => <AjoutAnnonce />} exact={true} />
                     <Route path="/details_annonce" render={() => <DetailsAnnonce />} exact={true} />
+                    <Route path="/ajout_voiture" render={() => <AjoutVoiture />} exact={true} />
+                    <Route path="/details_voiture" render={() => <DetailsVoiture />} exact={true} />
+                    <Route path="/images_voiture" render={() => <ImagesAnnonce />} exact={true} />
                 </IonRouterOutlet>
 
                 <IonTabBar slot="bottom">

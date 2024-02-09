@@ -205,6 +205,28 @@
                 border: 1px solid rgb(230, 230, 230);
                 margin-top: 10px;
             }
+
+            &--button {
+                margin-top: 25px;
+                background-color: $secondary-color;
+                width: 250px;
+            }
+
+            &--camera {
+                background-color: $title-color;
+            }
+        }
+    }
+
+    &__display-img {
+        display: grid;
+        grid-template-columns: 5cm 4cm;
+        justify-items: center;
+        margin-top: 25px;
+
+        &__element {
+            margin-top: 15px;
+            width: 80%;
         }
     }
 }

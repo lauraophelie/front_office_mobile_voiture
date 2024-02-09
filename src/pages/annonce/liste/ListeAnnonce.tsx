@@ -3,42 +3,33 @@ import "../annonce.scss";
 import Bouton from "../../../components/bouton/Bouton";
 import { useHistory } from "react-router";
 import AnnonceCard from "./AnnonceCard";
+import { useEffect, useState } from "react";
+import baseUrlRelationnel from "../../../config";
+import axios from "axios";
 
 const ListeAnnonce: React.FC = () => {
     const history = useHistory();
+    const [annonces, setAnnonces] = useState([]);
 
-    const data = [
-        {
-            id: 1,
-            title: "Titre de l'annonce",
-            horaire: "Date et Heure",
-            image: "src/imgs/essai.jpg"
-        },
-        {
-            id: 2,
-            title: "Titre de l'annonce",
-            horaire: "Date et Heure",
-            image: "src/imgs/essai-1.jpg"
-        },
-        {
-            id: 3,
-            title: "Titre de l'annonce",
-            horaire: "Date et Heure",
-            image: "src/imgs/essai-2.jpg"
-        },
-        {
-            id: 4,
-            title: "Titre de l'annonce",
-            horaire: "Date et Heure",
-            image: "src/imgs/essai-3.jpg"
-        },
-        {
-            id: 5,
-            title: "Titre de l'annonce",
-            horaire: "Date et Heure",
-            image: "src/imgs/essai-4.jpg"
-        }
-    ]
+    useEffect(() => {
+        const userEmail = localStorage.getItem('userEmail');
+        const token = localStorage.getItem('token');
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        
+        const url = baseUrlRelationnel.baseUrlRelationnel + "annonce/find_by_user/" + userEmail;
+        axios.get(url, config) 
+            .then(response => {
+                setAnnonces(response.data.data)
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête:', error);
+            });
+    }, []);
 
     return (
         <IonContent>
@@ -49,14 +40,14 @@ const ListeAnnonce: React.FC = () => {
                     </h1>
                 </div>
                 
-                {data.length > 0 ? (
+                {annonces ? (
                     <div className="liste-annonce__content">
-                        {data.map((item, index) => (
+                        {annonces.map((item, index) => (
                             <AnnonceCard 
                                 key={index}
-                                title={item.title} 
-                                horaire={item.horaire} 
-                                image={item.image} 
+                                title={item.titre} 
+                                horaire={item.dateHeure} 
+                                //image={item.image} 
                                 onClick={() => history.push({
                                     pathname: "/details_annonce",
                                     state: { id: item.id }

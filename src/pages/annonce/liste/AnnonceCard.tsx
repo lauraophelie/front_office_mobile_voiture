@@ -5,7 +5,7 @@ import "../annonce.scss";
 interface AnnonceCardProps {
     title: string,
     horaire: string,
-    image: string,
+    image?: string,
     onClick?: () => void
 }
 
