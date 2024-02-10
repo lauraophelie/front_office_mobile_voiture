@@ -151,6 +151,19 @@ const AjoutVoiture: React.FC = () => {
                             /> 
                         </div>
 
+                        <div className="ajout-annonce__content__input">
+                            <label className="ajout-annonce__content__input--label"> 
+                                Kilométrage
+                            </label>
+                            <Input
+                                type={"text"}
+                                placeholder="Ecrivez ici"
+                                className="ajout-annonce__content__input--element"
+                                name="kilometrage"
+                                onChange={handleChange}
+                            /> 
+                        </div>
+
                         <Bouton
                             text="Suivant"
                             className="ajout-annonce__content__input--button"

@@ -1,19 +1,67 @@
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonToolbar } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "../../../components/input/Select";
 import Bouton from "../../../components/bouton/Bouton";
-import { useHistory } from "react-router";
-import Input from "../../../components/input/Input";
+import { useHistory, useLocation } from "react-router";
+import baseUrlRelationnel from "../../../config";
+import axios from "axios";
 
 const DetailsVoiture: React.FC = () => {
     const [listeCategorie, setListeCategorie] = useState([]);
     const [listeTypeEnergie, setListeTypeEnergie] = useState([]);
     const [listeVitesse, setListeVitesse] = useState([]);
 
+    const token = localStorage.getItem('tokenAdmin');
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+
+    const location = useLocation<{ annonce: {} }>();
+    const annonceData = location.state.annonce;
+
+    useEffect(() => {
+        const url = baseUrlRelationnel.baseUrlRelationnel + "modele/findCaracteristique/" + annonceData.modele;
+        console.log(url);
+
+        const fetchData = async () => {
+            const response = await axios.get(url, config);
+            if (response.data.data) {
+                const data = response.data.data;
+
+                const categories = new Set();
+                const typeEnergies = new Set();
+                const vitesses = new Set();
+    
+                data.forEach(item => {
+                    categories.add(JSON.stringify(item.categorie));
+                    typeEnergies.add(JSON.stringify(item.typeEnergie));
+                    vitesses.add(JSON.stringify(item.boiteVitesse));
+                });
+    
+                setListeCategorie(Array.from(categories).map(JSON.parse));
+                setListeTypeEnergie(Array.from(typeEnergies).map(JSON.parse));
+                setListeVitesse(Array.from(vitesses).map(JSON.parse));
+            } else if(response.data.error) {
+                console.error(response.data.error);
+            }
+        }
+        fetchData();
+    }, []);
+    
+
     const history = useHistory();
 
+    const [annonce, setAnnonce] = useState(annonceData);
+    
     const handleClick = () => {
-        history.push("/images_voiture");
+        history.push({
+            pathname: "/images_voiture",
+            state: { annonce : annonce }
+        });
     }
 
     return (
@@ -65,17 +113,6 @@ const DetailsVoiture: React.FC = () => {
                                 placeholder="Choisir un type d'energie"
                                 data={listeVitesse}
                             />
-                        </div>
-
-                        <div className="ajout-annonce__content__input">
-                            <label className="ajout-annonce__content__input--label"> 
-                                Kilométrage
-                            </label>
-                            <Input
-                                type={"text"}
-                                placeholder="Ecrivez ici"
-                                className="ajout-annonce__content__input--element"
-                            /> 
                         </div>
 
                         <Bouton

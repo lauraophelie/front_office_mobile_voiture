@@ -72,7 +72,7 @@ const AjoutAnnonce: React.FC = () => {
     const handleChange = (e: { target: { name: any; value: any; }; }) => {
         setAnnonce({
             ...annonce,
-            [e.target.name]: e.target.=value
+            [e.target.name]: e.target.value
         })
     };
 
