@@ -1,4 +1,4 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonSelect, IonSelectOption, IonTextarea, IonToolbar } from "@ionic/react";
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonTextarea, IonToolbar } from "@ionic/react";
 import "../annonce.scss";
 import Input from "../../../components/input/Input";
 import Select from "../../../components/input/Select";
@@ -12,7 +12,7 @@ const AjoutAnnonce: React.FC = () => {
     const [lieu, setLieu] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('tokenAdmin');
 
         const config = {
             headers: {
@@ -23,7 +23,6 @@ const AjoutAnnonce: React.FC = () => {
         const url = baseUrlRelationnel.baseUrlRelationnel + "lieu/findAll";
 
         const fectchData = async() => {
-            console.log(url);
             try {
                 const response = await axios.get(url, config);
 
@@ -40,22 +39,49 @@ const AjoutAnnonce: React.FC = () => {
     }, []);
 
     const [annonce, setAnnonce] = useState({
-        dateHeure: null,
+        dateHeure: Date.now(),
         titre: null,
         description: null,
         prixVente: 0,
         lieu: null,
+        marque: null,
+        modele: null,
+        categorie: null,
+        type_energie: null,
+        vitesse: null,
+        places: 0,
         proprietaire: null,
-        voiture: null,
         etat: 0,
-        status: 0
+        status: 0,
+        kilometrage: null
     })
 
     const history = useHistory();
 
     const handleClick = () => {
-        history.push("/ajout_voiture");
+        try {
+            history.push({
+                pathname: "/ajout_voiture",
+                state: { annonce: annonce }
+            })
+        } catch (error) {
+            console.error("error", error);
+        }
     }
+
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        setAnnonce({
+            ...annonce,
+            [e.target.name]: e.target.=value
+        })
+    };
+
+    const handleChangeLieu = (selectedLieu: string | number) => {
+        setAnnonce({
+            ...annonce,
+            lieu: selectedLieu
+        });
+    };
 
     return (
         <>
@@ -85,6 +111,8 @@ const AjoutAnnonce: React.FC = () => {
                             <Input 
                                 type={"text"}
                                 placeholder="Ecrivez ici"
+                                name="titre"
+                                onChange={handleChange}
                                 className="ajout-annonce__content__input--element"
                             /> 
                         </div>
@@ -96,6 +124,8 @@ const AjoutAnnonce: React.FC = () => {
                             <Input 
                                 type={"text"}
                                 placeholder="Ecrivez ici"
+                                name="prixVente"
+                                onChange={handleChange}
                                 className="ajout-annonce__content__input--element"
                             /> 
                         </div>
@@ -107,6 +137,7 @@ const AjoutAnnonce: React.FC = () => {
                             <Select 
                                 placeholder="Chosir un lieu"
                                 data={lieu}
+                                onSelect={handleChangeLieu}
                             />
                         </div>
 
@@ -114,12 +145,19 @@ const AjoutAnnonce: React.FC = () => {
                             <label className="ajout-annonce__content__input--label"> 
                                 Description
                             </label>
-                            <IonTextarea value={"Ecrivez ici"}> </IonTextarea>
-                        </div> 
-
+                            <textarea 
+                                name="description" 
+                                className="ajout-annonce__content__input--element"
+                                onChange={handleChange}
+                            > </textarea>
+                        </div>
                         <Bouton
                             text="Suivant"
                             className="ajout-annonce__content__input--button"
+                            /*onClick={() => history.push({
+                                pathname: "/ajout_voiture",
+                                state: { annonce: annonce }
+                            })}*/
                             onClick={handleClick}
                         />           
                     </div>

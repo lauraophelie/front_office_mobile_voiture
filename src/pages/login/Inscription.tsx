@@ -6,15 +6,16 @@ import Bouton from "../../components/bouton/Bouton";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import baseUrl from "../../config";
+import axios from "axios";
 
 const Inscription: React.FC = () => {
     const history = useHistory();
 
     const [inscription, setInscription] = useState({
-        nom_complet: "Emma Watson",
-        date_naissance: "1990-04-15",
-        email: "emma.watson@example.com",
-        password: "hermione123",
+        nom_complet: null,
+        date_naissance: null,
+        email: null,
+        password: null,
         role: 0
     })
 
@@ -30,7 +31,32 @@ const Inscription: React.FC = () => {
 
     const clickInscription = async(e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        const url = baseUrl + "utilisateur/inscription";
+        const url = baseUrl.baseUrl + "rest/auth/inscription";
+        console.log(inscription);
+        try {
+            const response = await axios.post(url, inscription);
+            console.log(inscription);
+            if(response.data) {
+                console.log(response.data);
+                const token = response.data.token;
+                const userEmail = response.data.email;
+
+                const getToken = await axios.post(baseUrl.baseUrlRelationnel + "rest/auth/login", baseUrl.admin);
+                
+                if(getToken.data) {
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("tokenAdmin", getToken.data.token);
+                    localStorage.setItem("userEmail", userEmail);
+
+                    history.push("/menu");
+                }
+            } else if(response.data.error) {
+                setError(response.data.error);
+                console.log(error);
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -50,12 +76,16 @@ const Inscription: React.FC = () => {
                         placeholder={"Nom complet"}
                         className="form__input__text"
                         required={true}
+                        name="nom_complet"
+                        onChange={handleChange}
                     />
 
                     <Input
                         type={"date"} 
                         className="form__input__text"
                         required={true}
+                        name="date_naissance"
+                        onChange={handleChange}
                     />
 
                     <Input 
@@ -63,6 +93,8 @@ const Inscription: React.FC = () => {
                         placeholder={"Adresse e-mail"}
                         className="form__input__text"
                         required={true}
+                        name="email"
+                        onChange={handleChange}
                     />
 
                     <Input 
@@ -70,11 +102,14 @@ const Inscription: React.FC = () => {
                         placeholder={"Mot de passe"}
                         className="form__input__text"
                         required={true}
+                        name="password"
+                        onChange={handleChange}
                     />
 
                     <Bouton
                         text={"S'inscrire"} 
                         className="form__input__button"
+                        onClick={clickInscription}
                     />
                 </div>
 

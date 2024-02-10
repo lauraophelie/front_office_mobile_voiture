@@ -13,7 +13,7 @@ const ListeAnnonce: React.FC = () => {
 
     useEffect(() => {
         const userEmail = localStorage.getItem('userEmail');
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('tokenAdmin');
 
         const config = {
             headers: {
@@ -22,13 +22,16 @@ const ListeAnnonce: React.FC = () => {
         };
         
         const url = baseUrlRelationnel.baseUrlRelationnel + "annonce/find_by_user/" + userEmail;
-        axios.get(url, config) 
-            .then(response => {
-                setAnnonces(response.data.data)
-            })
-            .catch(error => {
-                console.error('Erreur lors de la requête:', error);
-            });
+ 
+        const fetchData = async () => {
+            const response = await axios.get(url, config);
+            if(response.data.data) {
+                setAnnonces(response.data.data);
+            } else if(response.data.error) {
+                console.error(response.data.error);
+            }
+        }
+        fetchData();
     }, []);
 
     return (
@@ -40,7 +43,7 @@ const ListeAnnonce: React.FC = () => {
                     </h1>
                 </div>
                 
-                {annonces ? (
+                {annonces.length > 0 ? (
                     <div className="liste-annonce__content">
                         {annonces.map((item, index) => (
                             <AnnonceCard 

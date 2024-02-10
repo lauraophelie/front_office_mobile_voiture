@@ -1,25 +1,98 @@
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonToolbar } from "@ionic/react";
 import "../annonce.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "../../../components/input/Select";
 import Input from "../../../components/input/Input";
 import Bouton from "../../../components/bouton/Bouton";
-import { useHistory } from "react-router";
+import baseUrlRelationnel from "../../../config";
+import { useHistory, useLocation } from "react-router";
+import axios from "axios";
 
 const AjoutVoiture: React.FC = () => {
-    const [listeMarque, setListeMarque] = useState([
-        {
-            id: 1,
-            nom: "Toyota"
-        }
-    ]);
-
+    const [listeMarque, setListeMarque] = useState([]);
     const [listeModele, setListeModele] = useState([]);
+
+    const location = useLocation<{ annonce: {} }>();
+    const annonceData = location.state.annonce;
+
+    useEffect(() => {
+        const token = localStorage.getItem('tokenAdmin');
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const url = baseUrlRelationnel.baseUrlRelationnel + "marque/findAll";
+        const fectchData = async() => {
+            try {
+                const response = await axios.get(url, config);
+
+                if(response.data.data) {
+                    setListeMarque(response.data.data);
+                } else if(response.data.error) {
+                    console.error(response.data.error);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fectchData();
+    }, []);
 
     const history = useHistory();
 
+    const [annonce, setAnnonce] = useState(annonceData);
+
+    const handleChangeModele = (selectedModele: string | number) => {
+        setAnnonce({
+            ...annonce,
+            modele: selectedModele
+        })
+    }
+
+    const handleChangeMarque = (selectedMarque : string | number) => {
+        setAnnonce({
+            ...annonce,
+            marque: selectedMarque
+        });
+        const fetchModele = async () => {
+            const url = baseUrlRelationnel.baseUrlRelationnel + "modele/findByMarque/" + selectedMarque;
+            const token = localStorage.getItem('tokenAdmin');
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            try {
+                const response = await axios.get(url, config);
+                if(response.data.data) {
+                    setListeModele(response.data.data);
+                } else if(response.data.error) {
+                    console.error(response.data.error);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchModele();
+    }
+
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        setAnnonce({
+            ...annonce,
+            [e.target.name]: e.target.value
+        })
+    };
+
     const handleClick = () => {
-        history.push("/details_voiture");
+        console.log(annonce);
+        history.push({
+            pathname: "/details_voiture",
+            state: { annonce: annonce }
+        })
     }
 
     return (
@@ -50,6 +123,7 @@ const AjoutVoiture: React.FC = () => {
                             <Select
                                 placeholder="Choisir une marque"
                                 data={listeMarque}
+                                onSelect={handleChangeMarque}
                             />
                         </div>
 
@@ -60,6 +134,7 @@ const AjoutVoiture: React.FC = () => {
                             <Select
                                 placeholder="Choisir un modèle"
                                 data={listeModele}
+                                onSelect={handleChangeModele}
                             />
                         </div>
 
@@ -71,17 +146,8 @@ const AjoutVoiture: React.FC = () => {
                                 type={"text"}
                                 placeholder="Ecrivez ici"
                                 className="ajout-annonce__content__input--element"
-                            /> 
-                        </div>
-
-                        <div className="ajout-annonce__content__input">
-                            <label className="ajout-annonce__content__input--label"> 
-                                Nombre de portes
-                            </label>
-                            <Input 
-                                type={"text"}
-                                placeholder="Ecrivez ici"
-                                className="ajout-annonce__content__input--element"
+                                name="places"
+                                onChange={handleChange}
                             /> 
                         </div>
 

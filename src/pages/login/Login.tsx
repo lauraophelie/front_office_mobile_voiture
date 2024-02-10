@@ -37,10 +37,15 @@ const Login: React.FC = () => {
                 const token = response.data.token;
                 const userEmail = response.data.email;
 
-                localStorage.setItem("token", token);
-                localStorage.setItem("userEmail", userEmail);
+                const getToken = await axios.post(baseUrl.baseUrlRelationnel + "rest/auth/login", baseUrl.admin);
+                
+                if(getToken.data) {
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("tokenAdmin", getToken.data.token);
+                    localStorage.setItem("userEmail", userEmail);
 
-                history.push("/menu");
+                    history.push("/menu");
+                }
             } else if(response.data.error) {
                 setError(response.data.error);
                 console.log(error);

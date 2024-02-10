@@ -7,10 +7,39 @@ import '@ionic/react/css/ionic-swiper.css';
 
 import Image from "../../../components/image/Image";
 import "../annonce.scss";
+import baseUrlRelationnel from "../../../config";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DetailsAnnonce: React.FC = () => {
     const location = useLocation<{ id: number }>();
     const annonceId = location.state.id;
+
+    const [ficheAnnonce, setFicheAnnonce] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem("tokenAdmin");
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const url = baseUrlRelationnel.baseUrlRelationnel + "annonce/findById/" + annonceId;
+        const fetchData = async() => {
+            const response = await axios.get(url, config);
+
+            if(response.data.data) {
+                setFicheAnnonce(response.data.data);
+            } else if(response.data.error) {
+                setError(response.data.error);
+                console.log(error);
+            }
+        }
+        fetchData();
+    })
 
     console.log("Annonce : " + annonceId);
 
@@ -57,10 +86,10 @@ const DetailsAnnonce: React.FC = () => {
                     <div className="details-annonce__content">
                         <h1 className="details-annonce__content__header">
                             <p className="details-annonce__content__header--main">
-                                Titre de l'annonce
+                                {ficheAnnonce.titre}
                             </p>
                             <p className="details-annonce__content__header--details">
-                                Créée le : Date et Heure
+                                Créée le : {ficheAnnonce.dateHeure}
                             </p>
                         </h1>
 
@@ -69,8 +98,7 @@ const DetailsAnnonce: React.FC = () => {
                                 Description
                             </p>
                             <p className="details-annonce__content__desc--content">
-                                Lorem ipsum dolor sit amet Clita consetetur accusam accusam possim sit. Tempor eirmod erat no amet clita tempor duo dolore vero 
-                                consequat ipsum voluptua dolores te et duo dolor elitr.
+                                {ficheAnnonce.description}
                             </p>
                         </h2>
                         <div className="details-annonce__content__element">
@@ -78,7 +106,7 @@ const DetailsAnnonce: React.FC = () => {
                                 Lieu 
                             </p>
                             <p className="details-annonce__content__element--content">
-                                Lieu
+                                {ficheAnnonce.lieu.nom_lieu}
                             </p>
                         </div>
 
@@ -87,7 +115,7 @@ const DetailsAnnonce: React.FC = () => {
                                 Prix
                             </p>
                             <p className="details-annonce__content__element--content">
-                                Prix de l'annonce
+                                {ficheAnnonce.prixVente}
                             </p>
                         </div>
 
@@ -101,7 +129,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Marque
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Marque
+                                    {ficheAnnonce.voiture.marque.designation}
                                 </p>
                             </div>
 
@@ -110,7 +138,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Modèle
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Modèle
+                                    {ficheAnnonce.voiture.modele.designation}
                                 </p>
                             </div>
 
@@ -119,7 +147,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Catégorie
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Catégorie
+                                    {ficheAnnonce.voiture.categorie.nom}
                                 </p>
                             </div>
 
@@ -128,7 +156,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Vitesse
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Vitesse
+                                    {ficheAnnonce.voiture.vitesse.designation}
                                 </p>
                             </div>
 
@@ -137,25 +165,16 @@ const DetailsAnnonce: React.FC = () => {
                                     Places
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Places
+                                    {ficheAnnonce.voiture.nombrePlace}
                                 </p>
                             </div>
 
                             <div className="details-annonce__content__element">
                                 <p className="details-annonce__content__element--main">
-                                    Portes
+                                    Energie
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    Portes
-                                </p>
-                            </div>
-
-                            <div className="details-annonce__content__element">
-                                <p className="details-annonce__content__element--main">
-                                    Vitesse
-                                </p>
-                                <p className="details-annonce__content__element--content">
-                                    Vitesse
+                                    {ficheAnnonce.voiture.energie.designation}
                                 </p>
                             </div>
 
@@ -164,7 +183,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Kilométrage
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    km
+                                    {ficheAnnonce.voiture.kilometrage}
                                 </p>
                             </div>
                         </div>

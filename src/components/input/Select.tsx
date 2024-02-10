@@ -5,11 +5,13 @@ interface Option {
     id: string | number;
     nom?: string;
     designation?: string;
+    nom_lieu?: string;
 }
 
 interface SelectProps {
     placeholder?: string;
     data?: Option[];
+    name?: string;
     onSelect?: (value: string | number) => void;
 }
 
@@ -22,10 +24,13 @@ const Select: React.FC<SelectProps> = ({ placeholder, data = [], onSelect }) => 
     };
 
     return (
-        <IonSelect placeholder={placeholder} onIonChange={handleSelection}>
+        <IonSelect 
+            placeholder={placeholder} 
+            onIonChange={handleSelection}
+        >
             {data.map((item, index) => (
                 <IonSelectOption key={index} value={item.id}>
-                    {item.nom || item.designation}
+                    {item.nom || item.designation || item.nom_lieu}
                 </IonSelectOption>
             ))}
         </IonSelect>
