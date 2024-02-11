@@ -7,9 +7,9 @@ import baseUrlRelationnel from "../../../config";
 import axios from "axios";
 
 const DetailsVoiture: React.FC = () => {
-    const [listeCategorie, setListeCategorie] = useState([]);
-    const [listeTypeEnergie, setListeTypeEnergie] = useState([]);
-    const [listeVitesse, setListeVitesse] = useState([]);
+    const [listeCategorie, setListeCategorie] = useState<any> ();
+    const [listeTypeEnergie, setListeTypeEnergie] = useState<any>();
+    const [listeVitesse, setListeVitesse] = useState<any>();
 
     const token = localStorage.getItem('tokenAdmin');
 
@@ -20,7 +20,7 @@ const DetailsVoiture: React.FC = () => {
     };
 
 
-    const location = useLocation<{ annonce: {} }>();
+    const location = useLocation<{ annonce: any }>();
     const annonceData = location.state.annonce;
 
     useEffect(() => {
@@ -35,15 +35,26 @@ const DetailsVoiture: React.FC = () => {
                 const typeEnergies = new Set();
                 const vitesses = new Set();
     
-                data.forEach(item => {
+                data.forEach((item: { categorie: any; typeEnergie: any; boiteVitesse: any; }) => {
                     categories.add(JSON.stringify(item.categorie));
                     typeEnergies.add(JSON.stringify(item.typeEnergie));
                     vitesses.add(JSON.stringify(item.boiteVitesse));
                 });
-    
-                setListeCategorie(Array.from(categories).map(JSON.parse));
-                setListeTypeEnergie(Array.from(typeEnergies).map(JSON.parse));
-                setListeVitesse(Array.from(vitesses).map(JSON.parse));
+
+                const parsedCategories = Array.from(categories)
+                    .map(category => typeof category === 'string' ? JSON.parse(category) : null)
+                    .filter(Boolean);
+                setListeCategorie(parsedCategories);
+
+                const parsedTypeEnergies = Array.from(typeEnergies)
+                    .map(typeEnergy => typeof typeEnergy === 'string' ? JSON.parse(typeEnergy) : null)
+                    .filter(Boolean);
+                setListeTypeEnergie(parsedTypeEnergies);
+
+                const parsedVitesses = Array.from(vitesses)
+                    .map(vitesse => typeof vitesse === 'string' ? JSON.parse(vitesse) : null)
+                    .filter(Boolean);
+                setListeVitesse(parsedVitesses);
             } else if(response.data.error) {
                 console.error(response.data.error);
             }
@@ -56,21 +67,21 @@ const DetailsVoiture: React.FC = () => {
 
     const [annonce, setAnnonce] = useState(annonceData);
 
-    const handleChangeCategorie = (selectedCategorie: string | number) => {
+    const handleChangeCategorie = (selectedCategorie: string | number| any ) => {
         setAnnonce({
             ...annonce,
             categorie: selectedCategorie
         });
     };
 
-    const handleChangeEnergie = (selectedEnergie: string | number) => {
+    const handleChangeEnergie = (selectedEnergie: string | number| any ) => {
         setAnnonce({
             ...annonce,
             type_energie: selectedEnergie
         });
     };
 
-    const handleChangeVitesse = (selectedVitesse: string | number) => {
+    const handleChangeVitesse = (selectedVitesse: string | number | any ) => {
         setAnnonce({
             ...annonce,
             vitesse: selectedVitesse

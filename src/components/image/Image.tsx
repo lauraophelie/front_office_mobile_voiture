@@ -1,5 +1,5 @@
 interface ImageProps {
-    src: string,
+    src: string | any,
     alt?: string,
     className?: string,
     onClick?: () => void

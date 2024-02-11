@@ -45,14 +45,14 @@ const AjoutVoiture: React.FC = () => {
 
     const [annonce, setAnnonce] = useState(annonceData);
 
-    const handleChangeModele = (selectedModele: string | number) => {
+    const handleChangeModele = (selectedModele: string | number | any ) => {
         setAnnonce({
             ...annonce,
             modele: selectedModele
         })
     }
 
-    const handleChangeMarque = (selectedMarque : string | number) => {
+    const handleChangeMarque = (selectedMarque : string | number | any ) => {
         setAnnonce({
             ...annonce,
             marque: selectedMarque

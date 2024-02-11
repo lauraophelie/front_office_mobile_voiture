@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'ionic.frontofficemobilevoiture',
-  appName: 'frontofficemobilevoiture',
-  webDir: 'dist',
+  appId: 'com.voiture.cloud',
+  appName: 'occazz',
+  webDir: 'build',
   server: {
     androidScheme: 'https'
   }

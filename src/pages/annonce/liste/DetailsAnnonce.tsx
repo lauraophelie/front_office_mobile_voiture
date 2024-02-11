@@ -10,13 +10,14 @@ import "../annonce.scss";
 import baseUrlRelationnel from "../../../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Annonce, DetailsAnnonce } from "../annonce";
 
 const DetailsAnnonce: React.FC = () => {
     const location = useLocation<{ id: number }>();
     const annonceId = location.state.id;
 
-    const [ficheAnnonce, setFicheAnnonce] = useState(null);
-    const [images, setImages] = useState(null);
+    const [ficheAnnonce, setFicheAnnonce] = useState<Annonce>({});
+    const [images, setImages] = useState<DetailsAnnonce>();
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -114,7 +115,7 @@ const DetailsAnnonce: React.FC = () => {
                                     Lieu 
                                 </p>
                                 <p className="details-annonce__content__element--content">
-                                    {ficheAnnonce.lieu.nom_lieu}
+                                    {ficheAnnonce.lieu && ficheAnnonce.lieu.nom_lieu}
                                 </p>
                             </div>
 
@@ -137,7 +138,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Marque
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.marque.nom}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.marque && ficheAnnonce.voiture.marque.nom}
                                     </p>
                                 </div>
 
@@ -146,7 +147,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Modèle
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.modele.nom}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.modele && ficheAnnonce.voiture.modele.nom}
                                     </p>
                                 </div>
 
@@ -155,7 +156,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Catégorie
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.categorie.nom}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.categorie && ficheAnnonce.voiture.categorie.nom}
                                     </p>
                                 </div>
 
@@ -164,7 +165,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Vitesse
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.vitesse.designation}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.vitesse && ficheAnnonce.voiture.vitesse.designation}
                                     </p>
                                 </div>
 
@@ -173,7 +174,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Places
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.nombrePlace}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.nombrePlace}
                                     </p>
                                 </div>
 
@@ -182,7 +183,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Energie
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.energie.designation}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.energie && ficheAnnonce.voiture.energie.designation}
                                     </p>
                                 </div>
 
@@ -191,7 +192,7 @@ const DetailsAnnonce: React.FC = () => {
                                         Kilométrage
                                     </p>
                                     <p className="details-annonce__content__element--content">
-                                        {ficheAnnonce.voiture.kilometrage}
+                                        {ficheAnnonce.voiture && ficheAnnonce.voiture.kilometrage}
                                     </p>
                                 </div>
                             </div>

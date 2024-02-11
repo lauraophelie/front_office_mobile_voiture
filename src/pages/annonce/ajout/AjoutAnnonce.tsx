@@ -38,7 +38,7 @@ const AjoutAnnonce: React.FC = () => {
         fectchData();
     }, []);
 
-    const [annonce, setAnnonce] = useState({
+    const [annonce, setAnnonce] = useState<any>({
         dateHeure: Date.now(),
         titre: null,
         description: null,
@@ -76,7 +76,7 @@ const AjoutAnnonce: React.FC = () => {
         })
     };
 
-    const handleChangeLieu = (selectedLieu: string | number) => {
+    const handleChangeLieu = (selectedLieu: string | number | any) => {
         setAnnonce({
             ...annonce,
             lieu: selectedLieu

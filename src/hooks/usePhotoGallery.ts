@@ -1,13 +1,9 @@
-import { isPlatform } from '@ionic/react';
 
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Preferences } from '@capacitor/preferences';
-import { Capacitor } from '@capacitor/core';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { useState } from 'react';
 
 export function usePhotoGallery() {
-    const [photos, setPhotos] = useState<string[]>([]);
+    const [photos, setPhotos] = useState<any[]>([]);
 
     const takePhoto = async () => {
         const photo = await Camera.getPhoto({
@@ -15,7 +11,7 @@ export function usePhotoGallery() {
             source: CameraSource.Camera,
             quality: 300,
         });
-        setPhotos(prevPhotos => [...prevPhotos, photo.webPath]);
+        setPhotos((prevPhotos) => [...prevPhotos, photo.webPath]);
     };
     
     return {

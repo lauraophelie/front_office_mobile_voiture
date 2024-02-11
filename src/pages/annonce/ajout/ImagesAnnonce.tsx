@@ -7,7 +7,7 @@ import { useHistory, useLocation } from "react-router";
 import storage from "../../../fireBaseConfig";
 import { useState } from "react";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import { Annonce, DetailsAnnonce, Voiture } from "../annonce";
+import { Annonce, AnnonceData, DetailsAnnonce, Voiture } from "../annonce";
 import axios from "axios";
 import baseUrlRelationnel from "../../../config";
 
@@ -15,7 +15,7 @@ const ImagesAnnonce: React.FC = () => {
     const { takePhoto, photos } = usePhotoGallery();
 
     const location = useLocation<{ annonce: {} }>();
-    const annonceData = location.state.annonce;
+    const annonceData: AnnonceData = location.state.annonce;
 
     console.log(annonceData);
     console.log(storage);
@@ -127,7 +127,7 @@ const ImagesAnnonce: React.FC = () => {
                             console.error("An error occurred : " + sendingAnnonce.data.error);
                         }
                 } else if(send.data.error) {
-                    console.error("An error occurred : " + sendDetails.data.error);
+                    console.error("An error occurred : " + send.data.error);
                 }
         } catch (error) {
             console.error("Error creating annonce:", error);

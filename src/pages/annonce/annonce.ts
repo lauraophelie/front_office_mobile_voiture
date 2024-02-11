@@ -1,34 +1,35 @@
 export interface Lieu {
-    id: number,
+    id: number | any,
     nom_lieu?: string
 }
 
 export interface TypeEnergie {
-    id: number,
+    id: number | any,
     designation?: string
 }
 
 export interface Categorie {
-    id: number,
-    designation?: string
+    id: number | any,
+    nom?: string
 }
 
 export interface BoiteVitesse {
-    id: number,
+    id: number | any,
     designation?: string
 }
 
 export interface Marque {
-    id: number,
-    designation?: string
+    id: number | any,
+    nom?: string
 }
 
 export interface Modele {
-    id:number
+    id:number | any,
+    nom?: string
 }
 
 export interface Voiture {
-    id?:number,
+    id?:number | any,
     nombrePlace?:number,
     kilometrage?:number,
     marque?: Marque,
@@ -38,8 +39,26 @@ export interface Voiture {
     vitesse?: BoiteVitesse
 }
 
+export interface AnnonceData {
+    dateHeure?: any,
+    titre?: string,
+    description?: string,
+    prixVente?: number | any,
+    lieu?: number,
+    marque?: number,
+    modele?: number,
+    categorie?: number,
+    type_energie?: number,
+    vitesse?: number,
+    places?: number | any,
+    proprietaire?: string,
+    etat?: 0,
+    status?: 0,
+    kilometrage?: number | any
+}
+
 export interface Annonce {
-    id?: number,
+    id?: number | any,
     dateHeure?: any,
     titre?: string,
     description?: string,

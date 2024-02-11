@@ -3,13 +3,13 @@ import "../annonce.scss";
 import Bouton from "../../../components/bouton/Bouton";
 import { useHistory } from "react-router";
 import AnnonceCard from "./AnnonceCard";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import baseUrlRelationnel from "../../../config";
 import axios from "axios";
 
 const ListeAnnonce: React.FC = () => {
     const history = useHistory();
-    const [annonces, setAnnonces] = useState([]);
+    const [annonces, setAnnonces] = useState<any>([]);
     const [image, setImage] = useState([]);
 
     const token = localStorage.getItem('tokenAdmin');
@@ -58,7 +58,7 @@ const ListeAnnonce: React.FC = () => {
                 
                 {annonces.length > 0 ? (
                     <div className="liste-annonce__content">
-                        {annonces.map((item, index) => (
+                        {annonces.map((item: { titre: string; dateHeure: string; id: number; }, index: Key | null | undefined) => (
                             <AnnonceCard 
                                 key={index}
                                 title={item.titre} 

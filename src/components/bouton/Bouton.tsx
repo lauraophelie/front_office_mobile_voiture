@@ -6,7 +6,7 @@ interface BoutonProps {
     className?: string,
     id?: string,
     icon?: any,
-    onClick?: () => void
+    onClick?: (event : any) => void
 }
 
 const Bouton: React.FC<BoutonProps> = (props) => {
