@@ -25,8 +25,7 @@ const DetailsVoiture: React.FC = () => {
 
     useEffect(() => {
         const url = baseUrlRelationnel.baseUrlRelationnel + "modele/findCaracteristique/" + annonceData.modele;
-        console.log(url);
-
+        
         const fetchData = async () => {
             const response = await axios.get(url, config);
             if (response.data.data) {
@@ -56,6 +55,27 @@ const DetailsVoiture: React.FC = () => {
     const history = useHistory();
 
     const [annonce, setAnnonce] = useState(annonceData);
+
+    const handleChangeCategorie = (selectedCategorie: string | number) => {
+        setAnnonce({
+            ...annonce,
+            categorie: selectedCategorie
+        });
+    };
+
+    const handleChangeEnergie = (selectedEnergie: string | number) => {
+        setAnnonce({
+            ...annonce,
+            type_energie: selectedEnergie
+        });
+    };
+
+    const handleChangeVitesse = (selectedVitesse: string | number) => {
+        setAnnonce({
+            ...annonce,
+            vitesse: selectedVitesse
+        });
+    };
     
     const handleClick = () => {
         history.push({
@@ -92,6 +112,7 @@ const DetailsVoiture: React.FC = () => {
                             <Select
                                 placeholder="Choisir une catégorie"
                                 data={listeCategorie}
+                                onSelect={handleChangeCategorie}
                             />
                         </div>
 
@@ -102,6 +123,7 @@ const DetailsVoiture: React.FC = () => {
                             <Select
                                 placeholder="Choisir un type d'energie"
                                 data={listeTypeEnergie}
+                                onSelect={handleChangeEnergie}
                             />
                         </div>
 
@@ -112,6 +134,7 @@ const DetailsVoiture: React.FC = () => {
                             <Select
                                 placeholder="Choisir un type d'energie"
                                 data={listeVitesse}
+                                onSelect={handleChangeVitesse}
                             />
                         </div>
 

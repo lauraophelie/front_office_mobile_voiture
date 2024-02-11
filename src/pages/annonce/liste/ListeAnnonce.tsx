@@ -10,16 +10,18 @@ import axios from "axios";
 const ListeAnnonce: React.FC = () => {
     const history = useHistory();
     const [annonces, setAnnonces] = useState([]);
+    const [image, setImage] = useState([]);
 
-    useEffect(() => {
-        const userEmail = localStorage.getItem('userEmail');
-        const token = localStorage.getItem('tokenAdmin');
+    const token = localStorage.getItem('tokenAdmin');
 
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         };
+
+    useEffect(() => {
+        const userEmail = localStorage.getItem('userEmail');
         
         const url = baseUrlRelationnel.baseUrlRelationnel + "annonce/find_by_user/" + userEmail;
  
@@ -33,6 +35,17 @@ const ListeAnnonce: React.FC = () => {
         }
         fetchData();
     }, []);
+
+    const getImage = async (id: number) => {
+        const url = baseUrlRelationnel.baseUrlRelationnel + "details_annonce/findByAnnonce/" + id;
+        const img = await axios.get(url, config);
+
+        if(img.data.data) {
+            return img.data.data.image1;
+        } else {
+            return null;
+        }
+    }
 
     return (
         <IonContent>
@@ -50,7 +63,7 @@ const ListeAnnonce: React.FC = () => {
                                 key={index}
                                 title={item.titre} 
                                 horaire={item.dateHeure} 
-                                //image={item.image} 
+                                image={getImage(item.id)} 
                                 onClick={() => history.push({
                                     pathname: "/details_annonce",
                                     state: { id: item.id }

@@ -1,6 +1,6 @@
 import { IonFab, IonFabButton, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { Route } from "react-router"
+import { Route, useHistory } from "react-router"
 import Menu from "../../pages/menu/Menu";
 import { home, grid, notificationsOutline, logOutOutline, addCircle, add } from 'ionicons/icons';
 import ListeAnnonce from "../../pages/annonce/liste/ListeAnnonce";
@@ -12,6 +12,15 @@ import DetailsVoiture from "../../pages/annonce/ajout/DetailsVoiture";
 import ImagesAnnonce from "../../pages/annonce/ajout/ImagesAnnonce";
 
 const Footer: React.FC = () => {
+    const logOut = () => {
+        const history = useHistory();
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("tokenAdmin");
+        localStorage.removeItem("userEmail");
+
+        history.push("/login");
+    }
     return (
         <IonReactRouter>
             <IonTabs>
@@ -44,7 +53,7 @@ const Footer: React.FC = () => {
                     </IonTabButton>
 
                     <IonTabButton>
-                        <IonIcon icon={logOutOutline} />
+                        <IonIcon icon={logOutOutline} onClick={logOut} />
                     </IonTabButton>
                 </IonTabBar>
             </IonTabs>

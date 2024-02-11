@@ -154,10 +154,6 @@ const AjoutAnnonce: React.FC = () => {
                         <Bouton
                             text="Suivant"
                             className="ajout-annonce__content__input--button"
-                            /*onClick={() => history.push({
-                                pathname: "/ajout_voiture",
-                                state: { annonce: annonce }
-                            })}*/
                             onClick={handleClick}
                         />           
                     </div>
