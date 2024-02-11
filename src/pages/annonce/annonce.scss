@@ -186,39 +186,43 @@
 
     &__content {
         margin-top: 25px;
-        height: fit-content;
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        overflow-y: auto;
+        max-height: calc(100vh - 100px);
+        padding-bottom: 60%;
+    
         &__input {
             display: flex;
             margin-top: 20px;
             width: 80%;
             flex-direction: column;
-
+    
             &--label {
                 font-family: $primary-font;
                 color: $title-color;
             }
-
+    
             &--element {
                 border: 1px solid rgb(230, 230, 230);
                 margin-top: 10px;
                 background-color: white;
             }
-
+    
             &--button {
                 margin-top: 25px;
                 background-color: $secondary-color;
                 width: 250px;
+                align-self: center; /* Pour centrer horizontalement le bouton */
             }
-
+    
             &--camera {
                 background-color: $title-color;
             }
         }
     }
+    
 
     &__display-img {
         display: grid;

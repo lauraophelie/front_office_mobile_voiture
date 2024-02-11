@@ -10,14 +10,14 @@ import "../annonce.scss";
 import baseUrlRelationnel from "../../../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Annonce, DetailsAnnonce } from "../annonce";
+import { Annonce, DetailsAnnonceInterface } from "../annonce";
 
 const DetailsAnnonce: React.FC = () => {
     const location = useLocation<{ id: number }>();
     const annonceId = location.state.id;
 
     const [ficheAnnonce, setFicheAnnonce] = useState<Annonce>({});
-    const [images, setImages] = useState<DetailsAnnonce>();
+    const [images, setImages] = useState<DetailsAnnonceInterface>();
     const [error, setError] = useState(null);
 
     useEffect(() => {

@@ -151,11 +151,13 @@ const AjoutAnnonce: React.FC = () => {
                                 onChange={handleChange}
                             > </textarea>
                         </div>
-                        <Bouton
-                            text="Suivant"
-                            className="ajout-annonce__content__input--button"
-                            onClick={handleClick}
-                        />           
+                        <div className="ajout-annonce__content__input ajout-annonce__content__input--button-container">
+                            <Bouton
+                                text="Suivant"
+                                className="ajout-annonce__content__input--button"
+                                onClick={handleClick}
+                            />
+                        </div>           
                     </div>
                 </div>
            </IonContent>

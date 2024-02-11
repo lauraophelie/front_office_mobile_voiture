@@ -1,4 +1,4 @@
-package ionic.frontofficemobilevoiture;
+package com.cloud.voiture;
 
 import com.getcapacitor.BridgeActivity;
 

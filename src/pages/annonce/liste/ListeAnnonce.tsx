@@ -56,7 +56,7 @@ const ListeAnnonce: React.FC = () => {
                     </h1>
                 </div>
                 
-                {annonces.length > 0 ? (
+                {annonces ? (
                     <div className="liste-annonce__content">
                         {annonces.map((item: { titre: string; dateHeure: string; id: number; }, index: Key | null | undefined) => (
                             <AnnonceCard 

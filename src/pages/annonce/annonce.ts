@@ -70,7 +70,7 @@ export interface Annonce {
     status?: 0
 }
 
-export interface DetailsAnnonce {
+export interface DetailsAnnonceInterface {
     id?: number,
     id_annonce: Annonce,
     image1: string,

@@ -30,7 +30,7 @@ const Menu: React.FC = () => {
                             Bienvenu(e),
                         </p>
                         <p className="menu__title--h">
-                            Nom utilisateur
+                            {localStorage.getItem("userEmail")}
                         </p>
                     </h1>
                 </div>

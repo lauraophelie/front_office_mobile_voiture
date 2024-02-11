@@ -7,7 +7,7 @@ import { useHistory, useLocation } from "react-router";
 import storage from "../../../fireBaseConfig";
 import { useState } from "react";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import { Annonce, AnnonceData, DetailsAnnonce, Voiture } from "../annonce";
+import { Annonce, AnnonceData, DetailsAnnonceInterface, Voiture } from "../annonce";
 import axios from "axios";
 import baseUrlRelationnel from "../../../config";
 
@@ -105,7 +105,7 @@ const ImagesAnnonce: React.FC = () => {
                             console.log(sendingAnnonce.data.data);
                             console.log(imageUrls);
                             const dataAnnonce = sendingAnnonce.data.data;
-                            const detailsAnnonce: DetailsAnnonce = {
+                            const detailsAnnonce: DetailsAnnonceInterface = {
                                 id_annonce: {
                                     id: dataAnnonce.id
                                 },
@@ -119,7 +119,7 @@ const ImagesAnnonce: React.FC = () => {
                             const sendDetails = await axios.post(urlImage, detailsAnnonce, config);
 
                             if(sendDetails.data.data) {
-                                //history.push("/liste_annonce");
+                                history.push("/liste_annonce");
                             } else {
                                 console.error("An error occurred : " + sendDetails.data.data.error);
                             }
@@ -175,7 +175,7 @@ const ImagesAnnonce: React.FC = () => {
                         </div>
                     )}
 
-                    <div className="ajout-annonce__content">
+                    <div className="ajout-annonce__content__input ajout-annonce__content__input--button-container">
                         <Bouton
                             text="Créer l'annonce"
                             className="ajout-annonce__content__input--button"
