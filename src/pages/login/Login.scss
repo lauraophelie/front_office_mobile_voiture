@@ -1,0 +1,50 @@
+@import "../../assets/sass/variable.scss";
+@import "../../assets/sass/mixin.scss";
+
+.form {
+    background-color: $fade-color;
+    height: 100%;
+    color: black;
+
+    &__title {
+        font-family: $primary-font;
+        font-size: $title-font-size;
+        line-height: 12px;
+        padding-left: 45px;
+        padding-top: 45%;
+
+        &__inscription {
+            padding-top: 25%;
+        }
+    }
+
+    &__p {
+        font-size: 15px;
+        font-family: $secondary-font;
+        font-weight: lighter;
+        color: $grey;
+
+        &--footer {
+            text-align: center;
+            padding-top: 5px;
+            font-weight: 300;
+        }
+    }
+
+    &__input {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__text, &__button {
+            width: 275px;
+            margin-top: 20px;
+        }
+
+        &__button {
+            background-color: $primary-color;
+            @include box-shadow(5px, 5px, 15px, whitesmoke);
+        }
+    }
+}

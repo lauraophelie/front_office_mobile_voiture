@@ -1,0 +1,234 @@
+@import "../../assets/sass/mixin.scss";
+@import "../../assets/sass/variable.scss";
+
+.liste-annonce {
+    &--title {
+        text-align: center;
+        font-size: 20px;
+        text-transform: uppercase;
+        padding-top: 25px;
+        font-family: $primary-font;
+        color: $title-color;
+    }
+
+    &__empty {
+        height: 250px;
+        margin-top: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &--message {
+            font-size: 17px;
+            font-family: $primary-font;
+            font-weight: lighter;
+        }
+
+        &--button {
+            font-family: $primary-font;
+            width: 185px;
+            border-radius: 5px;
+            background-color: $title-color;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__card {
+            width: 90%;
+            height: 285px;
+            margin-top: 35px;
+
+            &--image {
+                width: 100%;
+                height: 185px;
+            }
+
+            &--title {
+                font-family: $primary-font;
+                font-size: 20px;
+                color: $title-color;
+            }
+
+            &--details {
+                display: flex;
+                justify-content: space-between;
+                
+                * {
+                    margin-top: -20px;
+                }
+
+                &--one {
+                    font-family: $secondary-font;
+                    color: $grey;
+                    font-weight: lighter;
+                    font-size: 15px;
+                }
+
+                &--button {
+                    width: 75px;
+                    height: 35px;
+                    background-color: $secondary-color;
+                    border-radius: 5px;
+                    font-family: $primary-font;
+                }
+            }
+        }
+    }
+}
+
+.details-annonce {
+    &__image {
+        height: fit-content;
+
+        &__element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__content {
+        padding-left: 15px;
+        height: fit-content;
+        overflow-y: scroll;
+        margin-top: 25%;
+
+        &__header {
+            line-height: 2px;
+
+            &--main {
+                font-size: 22px;
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--details {
+                font-size: 15px;
+                font-weight: lighter;
+                font-family: $secondary-font;
+                color: $grey;
+            }
+        }
+
+        &__desc {
+            margin-top: 30px;
+
+            &--main {
+                font-family: $primary-font;
+                font-size: 17px;
+                color: $title-color;
+            }
+
+            &--content {
+                font-family: $secondary-font;
+                color: $grey;
+                font-weight: lighter;
+                font-size: 16px;
+            }
+        }
+
+        &__element {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+
+            &--main {
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--content {
+                font-family: $secondary-font;
+                font-weight: lighter;
+                padding-left: 15px;
+            }
+        }
+
+        &__voiture {
+            margin-top: 15px;
+            height: fit-content;
+
+            &--title {
+                font-size: 20px;
+                font-family: $primary-font;
+                color: $title-color;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.ajout-annonce {
+    margin-top: 50px;
+
+    &__title {
+        text-align: center;
+        line-height: 5px;
+
+        &--main {
+            font-family: $primary-font;
+            font-size: 25px;
+            color: $title-color;
+        }
+
+        &--extra {
+            font-size: 17px;
+            font-family: $secondary-font;
+            font-weight: lighter;
+            color: rgb(100, 100, 100);
+        }
+    }
+
+    &__content {
+        margin-top: 25px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__input {
+            display: flex;
+            margin-top: 20px;
+            width: 80%;
+            flex-direction: column;
+
+            &--label {
+                font-family: $primary-font;
+                color: $title-color;
+            }
+
+            &--element {
+                border: 1px solid rgb(230, 230, 230);
+                margin-top: 10px;
+                background-color: white;
+            }
+
+            &--button {
+                margin-top: 25px;
+                background-color: $secondary-color;
+                width: 250px;
+            }
+
+            &--camera {
+                background-color: $title-color;
+            }
+        }
+    }
+
+    &__display-img {
+        display: grid;
+        grid-template-columns: 5cm 4cm;
+        justify-items: center;
+        margin-top: 25px;
+
+        &__element {
+            margin-top: 15px;
+            width: 80%;
+        }
+    }
+}
